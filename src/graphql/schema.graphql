@@ -1,0 +1,48 @@
+type AccountContent {
+  name: String!
+  phone: String
+}
+
+type Account {
+  id: ID!
+  content: AccountContent!
+}
+
+input AccountContentInput {
+  name: String!
+  phone: String
+}
+
+input AccountContentPatchInput {
+  name: String
+  phone: String
+}
+
+input AccountCreateInput {
+  content: AccountContentInput!
+}
+
+input AccountReplaceInput {
+  id: ID!
+  content: AccountContentInput!
+}
+
+input AccountPatchInput {
+  id: ID!
+  content: AccountContentPatchInput!
+}
+
+type CreateAccountMutationResponse {
+  code: String!
+  success: Boolean!
+  message: String!
+  account: Account
+}
+
+type Query {
+  accounts: [Account]
+}
+
+type Mutation {
+  createAccount(account: AccountCreateInput!): CreateAccountMutationResponse
+}
