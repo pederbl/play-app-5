@@ -1,5 +1,8 @@
-import { readFileSync } from "fs";
+import { readFileSync, readdirSync } from "fs";
 
-const typeDefs = readFileSync('src/graphql/schema.graphql', { encoding: 'utf-8' });
+const filenames = readdirSync('src/graphql/resources');
+const models = filenames.map(filename => readFileSync('src/graphql/resources/' + filename + "/schema.graphql", { encoding: 'utf-8' }))
 
-export default typeDefs; 
+const typeDefs = models.join("\n");
+
+export default typeDefs;

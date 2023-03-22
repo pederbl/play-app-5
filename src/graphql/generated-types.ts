@@ -41,6 +41,14 @@ export type AccountCreateInput = {
   content: AccountContentInput;
 };
 
+export type AccountCreateMutationResponse = {
+  __typename?: 'AccountCreateMutationResponse';
+  account?: Maybe<Account>;
+  code: Scalars['String'];
+  message: Scalars['String'];
+  success: Scalars['Boolean'];
+};
+
 export type AccountPatchInput = {
   content: AccountContentPatchInput;
   id: Scalars['ID'];
@@ -51,21 +59,13 @@ export type AccountReplaceInput = {
   id: Scalars['ID'];
 };
 
-export type CreateAccountMutationResponse = {
-  __typename?: 'CreateAccountMutationResponse';
-  account?: Maybe<Account>;
-  code: Scalars['String'];
-  message: Scalars['String'];
-  success: Scalars['Boolean'];
-};
-
 export type Mutation = {
   __typename?: 'Mutation';
-  createAccount?: Maybe<CreateAccountMutationResponse>;
+  accountCreate?: Maybe<AccountCreateMutationResponse>;
 };
 
 
-export type MutationCreateAccountArgs = {
+export type MutationAccountCreateArgs = {
   account: AccountCreateInput;
 };
 
@@ -150,10 +150,10 @@ export type ResolversTypes = ResolversObject<{
   AccountContentInput: AccountContentInput;
   AccountContentPatchInput: AccountContentPatchInput;
   AccountCreateInput: AccountCreateInput;
+  AccountCreateMutationResponse: ResolverTypeWrapper<AccountCreateMutationResponse>;
   AccountPatchInput: AccountPatchInput;
   AccountReplaceInput: AccountReplaceInput;
   Boolean: ResolverTypeWrapper<Scalars['Boolean']>;
-  CreateAccountMutationResponse: ResolverTypeWrapper<CreateAccountMutationResponse>;
   ID: ResolverTypeWrapper<Scalars['ID']>;
   Mutation: ResolverTypeWrapper<{}>;
   Query: ResolverTypeWrapper<{}>;
@@ -167,10 +167,10 @@ export type ResolversParentTypes = ResolversObject<{
   AccountContentInput: AccountContentInput;
   AccountContentPatchInput: AccountContentPatchInput;
   AccountCreateInput: AccountCreateInput;
+  AccountCreateMutationResponse: AccountCreateMutationResponse;
   AccountPatchInput: AccountPatchInput;
   AccountReplaceInput: AccountReplaceInput;
   Boolean: Scalars['Boolean'];
-  CreateAccountMutationResponse: CreateAccountMutationResponse;
   ID: Scalars['ID'];
   Mutation: {};
   Query: {};
@@ -189,7 +189,7 @@ export type AccountContentResolvers<ContextType = MyContext, ParentType extends 
   __isTypeOf?: IsTypeOfResolverFn<ParentType, ContextType>;
 }>;
 
-export type CreateAccountMutationResponseResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['CreateAccountMutationResponse'] = ResolversParentTypes['CreateAccountMutationResponse']> = ResolversObject<{
+export type AccountCreateMutationResponseResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['AccountCreateMutationResponse'] = ResolversParentTypes['AccountCreateMutationResponse']> = ResolversObject<{
   account?: Resolver<Maybe<ResolversTypes['Account']>, ParentType, ContextType>;
   code?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
   message?: Resolver<ResolversTypes['String'], ParentType, ContextType>;
@@ -198,7 +198,7 @@ export type CreateAccountMutationResponseResolvers<ContextType = MyContext, Pare
 }>;
 
 export type MutationResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Mutation'] = ResolversParentTypes['Mutation']> = ResolversObject<{
-  createAccount?: Resolver<Maybe<ResolversTypes['CreateAccountMutationResponse']>, ParentType, ContextType, RequireFields<MutationCreateAccountArgs, 'account'>>;
+  accountCreate?: Resolver<Maybe<ResolversTypes['AccountCreateMutationResponse']>, ParentType, ContextType, RequireFields<MutationAccountCreateArgs, 'account'>>;
 }>;
 
 export type QueryResolvers<ContextType = MyContext, ParentType extends ResolversParentTypes['Query'] = ResolversParentTypes['Query']> = ResolversObject<{
@@ -208,7 +208,7 @@ export type QueryResolvers<ContextType = MyContext, ParentType extends Resolvers
 export type Resolvers<ContextType = MyContext> = ResolversObject<{
   Account?: AccountResolvers<ContextType>;
   AccountContent?: AccountContentResolvers<ContextType>;
-  CreateAccountMutationResponse?: CreateAccountMutationResponseResolvers<ContextType>;
+  AccountCreateMutationResponse?: AccountCreateMutationResponseResolvers<ContextType>;
   Mutation?: MutationResolvers<ContextType>;
   Query?: QueryResolvers<ContextType>;
 }>;

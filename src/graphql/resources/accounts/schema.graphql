@@ -32,17 +32,17 @@ input AccountPatchInput {
   content: AccountContentPatchInput!
 }
 
-type CreateAccountMutationResponse {
+type AccountCreateMutationResponse {
   code: String!
   success: Boolean!
   message: String!
   account: Account
 }
 
-type Query {
-  accounts: [Account]
+type Mutation {
+  accountCreate(account: AccountCreateInput!): AccountCreateMutationResponse
 }
 
-type Mutation {
-  createAccount(account: AccountCreateInput!): CreateAccountMutationResponse
+type Query {
+  accounts: [Account]
 }
